@@ -3,6 +3,73 @@ CHANGELOG for PHP CS Fixer
 
 This file contains changelogs for stable releases only.
 
+Changelog for v3.13.0
+---------------------
+
+* bug: BracesFixer - Fix unexpected extra blank line (#6667)
+* bug: fix CI on master branch (#6663)
+* bug: IsNullFixer - handle casting (#6661)
+* docs: feature or bug (#6652)
+* docs: Use case insensitive sorting for options (#6666)
+* docs: [DateTimeCreateFromFormatCallFixer] Fix typos in the code sample (#6671)
+* DX: update cli-executor (#6664)
+* DX: update dev-tools (#6665)
+* feature: Add global_namespace_import to @Symfony ruleset (#6662)
+* feature: Add separate option for closure_fn_spacing (#6658)
+* feature: general_phpdoc_annotation_remove - allow add case_sensitive option (#6660)
+* minor: AllowedValueSubset - possible values are sorted (#6651)
+* minor: Use md5 for file hashing to reduce possible collisions (#6597)
+
+Changelog for v3.12.0
+---------------------
+
+* bug: SingleLineThrowFixer - Handle throw expression inside block (#6653)
+* DX: create TODO to change default ruleset for v4 (#6601)
+* DX: Fix SCA findings (#6626)
+* DX: HelpCommand - fix docblock (#6584)
+* DX: Narrow some docblock types (#6581)
+* DX: Remove redundant check for PHP <5.2.7 (#6620)
+* DX: Restore PHPDoc to type rules workflow step (#6615)
+* DX: SCA - scope down types (#6630)
+* DX: Specify value type in iterables in tests (#6594)
+* DX: Test on PHP 8.2 (#6558)
+* DX: Update GitHub Actions (#6606)
+* DX: Update PHPStan (#6616)
+* feature: Add `@PHP82Migration` ruleset (#6621)
+* feature: ArrayPushFixer now fix short arrays (#6639)
+* feature: NoSuperfluousPhpdocTagsFixer - support untyped and empty annotations in phpdoc (#5792)
+* feature: NoUselessConcatOperatorFixer - Introduction (#6447)
+* feature: Support for constants in traits (#6607)
+* feature: [PHP8.2] Support for new standalone types (`null`, `true`, `false`) (#6623)
+* minor: GitHub Workflows security hardening (#6644)
+* minor: prevent BC break in ErrorOutput (#6633)
+* minor: prevent BC break in Runner (#6634)
+* minor: Revert "minor: prevent BC break in Runner" (#6637)
+* minor: Update dev tools (#6554)
+
+Changelog for v3.11.0
+---------------------
+
+* bug: DateTimeCreateFromFormatCallFixer - Mark as risky (#6575)
+* bug: Do not treat implements list comma as array comma (#6595)
+* bug: Fix MethodChainingIndentationFixer with arrow functions and class instantiation (#5587)
+* bug: MethodChainingIndentationFixer - Fix bug with attribute access (#6573)
+* bug: NoMultilineWhitespaceAroundDoubleArrowFixer - fix for single line comment (#6589)
+* bug: TypeAlternationTransformer - TypeIntersectionTransforme - Bug: handle attributes (#6579)
+* bug: [BinaryOperatorFixer] Fix more issues with scoped operators (#6559)
+* docs: Remove `$` from console command snippets (#6600)
+* docs: Remove `$` from console command snippets in documentation (#6599)
+* DX: AllowedValueSubset::getAllowedValues - fix method prototype (#6585)
+* DX: Narrow docblock types in FixerConfiguration (#6580)
+* DX: updagte @PhpCsFixer set config for phpdoc_order rule (#6555)
+* DX: Update PHPUnit config (#6566)
+* feature: Introduce configurability to PhpdocSeparationFixer (#6501)
+* feature: Introduce PER set (#6545)
+* feature: NoTrailingCommaInSinglelineFixer - Introduction (#6529)
+* feature: Support removing superfluous PHPDocs involving `self` (#6583)
+* minor: NoUnneededControlParenthesesFixer - Support instanceof static cases (#6587)
+* minor: PhpdocToCommentFixer - allow phpdoc comments before trait use statement. Fixes #6092 (#6565)
+
 Changelog for v3.10.0
 ---------------------
 

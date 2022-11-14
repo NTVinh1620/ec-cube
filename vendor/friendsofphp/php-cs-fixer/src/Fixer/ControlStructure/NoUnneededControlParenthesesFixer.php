@@ -79,6 +79,7 @@ final class NoUnneededControlParenthesesFixer extends AbstractFixer implements C
         [T_OBJECT_OPERATOR],
         [T_STRING],
         [T_VARIABLE],
+        [T_STATIC],
         // magic constants
         [T_CLASS_C],
         [T_DIR],
@@ -583,6 +584,9 @@ while ($y) { continue (2); }
         return $index;
     }
 
+    /**
+     * @return null|array{type: Tokens::BLOCK_TYPE_*, isStart: bool}
+     */
     private function getBlock(Tokens $tokens, int $index, bool $isStart): ?array
     {
         $block = Tokens::detectBlockType($tokens[$index]);

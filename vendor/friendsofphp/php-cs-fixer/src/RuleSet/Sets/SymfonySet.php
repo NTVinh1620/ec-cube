@@ -59,6 +59,11 @@ final class SymfonySet extends AbstractRuleSetDescription
                     'inheritDocs' => 'inheritDoc',
                 ],
             ],
+            'global_namespace_import' => [
+                'import_classes' => false,
+                'import_constants' => false,
+                'import_functions' => false,
+            ],
             'include' => true,
             'increment_style' => true,
             'integer_literal_case' => true,
@@ -103,9 +108,7 @@ final class SymfonySet extends AbstractRuleSetDescription
                 'allow_mixed' => true,
                 'allow_unused_params' => true,
             ],
-            'no_trailing_comma_in_list_call' => true,
-            'no_trailing_comma_in_singleline_array' => true,
-            'no_trailing_comma_in_singleline_function_call' => true,
+            'no_trailing_comma_in_singleline' => true,
             'no_unneeded_control_parentheses' => [
                 'statements' => [
                     'break',
@@ -125,6 +128,7 @@ final class SymfonySet extends AbstractRuleSetDescription
             'no_unneeded_import_alias' => true,
             'no_unset_cast' => true,
             'no_unused_imports' => true,
+            'no_useless_concat_operator' => true,
             'no_useless_nullsafe_operator' => true,
             'no_whitespace_before_comma_in_array' => true,
             'normalize_index_brace' => true,

@@ -50,6 +50,8 @@ final class HelpCommand extends BaseHelpCommand
 
     /**
      * Returns the allowed values of the given option that can be converted to a string.
+     *
+     * @return null|list<AllowedValueSubset|mixed>
      */
     public static function getDisplayableAllowedValues(FixerOptionInterface $option): ?array
     {
@@ -101,6 +103,9 @@ final class HelpCommand extends BaseHelpCommand
         return Preg::replace('/\bNULL\b/', 'null', $str);
     }
 
+    /**
+     * @param array<mixed> $value
+     */
     private static function arrayToString(array $value): string
     {
         if (0 === \count($value)) {

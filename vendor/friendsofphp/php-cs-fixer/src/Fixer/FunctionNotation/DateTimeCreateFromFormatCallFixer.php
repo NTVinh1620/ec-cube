@@ -35,15 +35,31 @@ final class DateTimeCreateFromFormatCallFixer extends AbstractFixer
             ],
             "Consider this code:
     `DateTime::createFromFormat('Y-m-d', '2022-02-11')`.
-    What value will be returned? '2022-01-11 00:00:00.0'? No, actual return value has 'H:i:s' section like '2022-02-11 16:55:37.0'.
-    Change 'Y-m-d' to '!Y-m-d', return value will be '2022-01-11 00:00:00.0'.
-    So, adding `!` to format string will make return value more intuitive."
+    What value will be returned? '2022-02-11 00:00:00.0'? No, actual return value has 'H:i:s' section like '2022-02-11 16:55:37.0'.
+    Change 'Y-m-d' to '!Y-m-d', return value will be '2022-02-11 00:00:00.0'.
+    So, adding `!` to format string will make return value more intuitive.",
+            'Risky when depending on the actual timings being used even when not explicit set in format.'
         );
+    }
+
+    /**
+     * {@inheritdoc}
+     *
+     * Must run after NoUselessConcatOperatorFixer.
+     */
+    public function getPriority(): int
+    {
+        return 0;
     }
 
     public function isCandidate(Tokens $tokens): bool
     {
         return $tokens->isTokenKindFound(T_DOUBLE_COLON);
+    }
+
+    public function isRisky(): bool
+    {
+        return true;
     }
 
     protected function applyFix(\SplFileInfo $file, Tokens $tokens): void
@@ -122,6 +138,9 @@ final class DateTimeCreateFromFormatCallFixer extends AbstractFixer
         }
     }
 
+    /**
+     * @param array<int, int> $arguments
+     */
     private function getFirstArgumentTokenIndex(Tokens $tokens, array $arguments): ?int
     {
         if (2 !== \count($arguments)) {

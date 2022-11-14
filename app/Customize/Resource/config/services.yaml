@@ -1,0 +1,4 @@
+# services:
+#   Customize\Service\SendToApi:
+#     arguments:
+#       - "@http_client"

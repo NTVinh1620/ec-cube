@@ -61,6 +61,7 @@ final class BinaryOperatorSpacesFixer extends AbstractFixer implements Configura
 
     /**
      * @internal
+     *
      * @const Placeholder used as anchor for right alignment.
      */
     public const ALIGN_PLACEHOLDER = "\x2 ALIGNABLE%d \x3";
@@ -542,7 +543,10 @@ $array = [
             }
 
             if ($token->isGivenKind(T_FN)) {
-                $index = $this->getLastTokenIndexOfFn($tokens, $index);
+                $from = $tokens->getNextMeaningfulToken($index);
+                $until = $this->getLastTokenIndexOfFn($tokens, $index);
+                $this->injectAlignmentPlaceholders($tokens, $from + 1, $until - 1, $tokenContent);
+                $index = $until;
 
                 continue;
             }
@@ -621,7 +625,10 @@ $array = [
             }
 
             if ($token->isGivenKind(T_FN)) {
-                $index = $this->getLastTokenIndexOfFn($tokens, $index);
+                $from = $tokens->getNextMeaningfulToken($index);
+                $until = $this->getLastTokenIndexOfFn($tokens, $index);
+                $this->injectArrayAlignmentPlaceholders($tokens, $from + 1, $until - 1);
+                $index = $until;
 
                 continue;
             }
@@ -694,6 +701,22 @@ $array = [
 
                     ++$index;
                 }
+            }
+
+            if ($token->equals('{')) {
+                $until = $tokens->findBlockEnd(Tokens::BLOCK_TYPE_CURLY_BRACE, $index);
+                $this->injectArrayAlignmentPlaceholders($tokens, $index + 1, $until - 1);
+                $index = $until;
+
+                continue;
+            }
+
+            if ($token->equals('(')) {
+                $until = $tokens->findBlockEnd(Tokens::BLOCK_TYPE_PARENTHESIS_BRACE, $index);
+                $this->injectArrayAlignmentPlaceholders($tokens, $index + 1, $until - 1);
+                $index = $until;
+
+                continue;
             }
         }
     }
@@ -784,12 +807,12 @@ $array = [
 
                 $rightmostSymbol = 0;
                 foreach ($group as $index) {
-                    $rightmostSymbol = max($rightmostSymbol, strpos(utf8_decode($lines[$index]), $placeholder));
+                    $rightmostSymbol = max($rightmostSymbol, mb_strpos($lines[$index], $placeholder));
                 }
 
                 foreach ($group as $index) {
                     $line = $lines[$index];
-                    $currentSymbol = strpos(utf8_decode($line), $placeholder);
+                    $currentSymbol = mb_strpos($line, $placeholder);
                     $delta = abs($rightmostSymbol - $currentSymbol);
 
                     if ($delta > 0) {
